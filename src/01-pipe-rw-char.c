@@ -1,3 +1,9 @@
+/***********************************
+ * pipe read and write
+ *
+ * http://www.typeof.me
+ **********************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

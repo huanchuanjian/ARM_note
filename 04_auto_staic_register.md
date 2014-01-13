@@ -149,7 +149,7 @@ int main()
 
 /* test2.c */
 
-staic int g_in_test2 = 1; 
+static int g_in_test2 = 1; 
 
 int get()
 {
@@ -175,9 +175,9 @@ int main()
 
 /* test2.c */
 
-staic int g_in_test2 = 1; 
+static int g_in_test2 = 1; 
 
-staic int get()
+static int get()
 {
 	return g_in_test2;
 }

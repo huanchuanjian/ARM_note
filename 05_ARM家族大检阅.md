@@ -31,7 +31,7 @@ ARM处理器比较
 ------------
 
 ```
-			2440		    6410			  	210
+			2440		    6410			  	 210
 
 处理器速度  400-500MHz  	 533-667MHz  			800-1GHz
 缓存		    16KB        	16KB        		32KB
@@ -40,4 +40,14 @@ ARM处理器比较
 其他         停产       		未停产       		未停产      
 
 ```
+
+
+ARM处理器工作模式
+---------------
+
+![](http://ww1.sinaimg.cn/mw690/7fcfb6a1gw1ecklowwwroj20jy08v407.jpg)
+
+注意这里需要记住两个模式
+* Linux用户态程序运行在 **usr mode**
+* Linux kernel运行在 **svc mode**
 

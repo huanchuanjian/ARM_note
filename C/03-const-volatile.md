@@ -29,8 +29,6 @@ printf("cval = %d\n", cval);
 #### volatile
 1. `volatile`可以理解为 **编译器警告字** ，告诉编译器每次必须去内存取变量的值。
 2. `volatile`主要修饰可能被多个线程访问的变量以及一些未知因素更改的变量。
-
-参考：
-
-* [何登成博士的文章](http://hedengcheng.com/?p=725)
-* [hugozhu的文章](http://hugozhu.myalert.info/2013/06/30/38-java-volatile-variable.html)
+3. 参考：
+	* [何登成博士的文章](http://hedengcheng.com/?p=725)
+	* [hugozhu的文章](http://hugozhu.myalert.info/2013/06/30/38-java-volatile-variable.html)

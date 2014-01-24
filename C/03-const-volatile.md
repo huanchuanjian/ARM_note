@@ -13,7 +13,6 @@ cval = 2;	/* 编译器报错：error: assignment of read-only variable ‘cval�
 const int cval = 1;
 int* pcval = (int*) &cval;
 *pcval = 2;
-
 printf("cval = %d\n", cval);
 ```
 

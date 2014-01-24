@@ -19,6 +19,18 @@ printf("cval = %d\n", cval);
 3. const数组
 	* 同样，const修饰的数组也是只读的
 	* C语言标准里，const修饰的数组空间不可以修改。（这里我测试了一下，gcc g++是可以修改的）
-	
+
+4. const修饰指针
+	* `const int* pdata    /* p可变，data不可变 */`
+	* `int const* pdata	   /* 同上 */`   
+	* `int* const pdata	   /* p不可变，data可变 */`
+	* `const int* const pdata /* p, data都不可变 */`	
 
 #### volatile
+1. `volatile`可以理解为 **编译器警告字** ，告诉编译器每次必须去内存取变量的值。
+2. `volatile`主要修饰可能被多个线程访问的变量以及一些未知因素更改的变量。
+
+参考：
+
+* [何登成博士的文章](http://hedengcheng.com/?p=725)
+* [hugozhu的文章](http://hugozhu.myalert.info/2013/06/30/38-java-volatile-variable.html)

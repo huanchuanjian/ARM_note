@@ -180,4 +180,4 @@ int main(int argc, char** argv)
 
 最后附上斐波拉契曲线，黄金比，蒙娜丽莎的整体构图就符合该曲线。
 
-![](http://photo.weibo.com/2144319137/photos/detail/photo_id/3670749410934512)
+![](http://ww2.sinaimg.cn/mw690/7fcfb6a1gw1ecw4uve7skj20go0b4dgm.jpg)

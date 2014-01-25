@@ -1,4 +1,4 @@
-## struct-union
+## struct
 
 #### struct
 
@@ -64,3 +64,120 @@ int main(int argc, char** argv)
 `soft_array size = 4`
 这是因为array[]这个 **域** 在这里充当 **占位符** ，编译器无法确定其大小，不为其分配内存空间。所以array[]大小为0
 
+* 如何给“柔性数组”分配空间？
+
+```cpp
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct _soft_array
+{
+	int len;
+	int array[];
+} soft_array;
+
+int main(int argc, char** argv)
+{
+	soft_array* sa;
+	int i;
+
+	// sa = (soft_array*) malloc(sizeof(soft_array) + sizeof(int) * 10);
+	sa = (soft_array*) malloc(sizeof(soft_array) + sizeof(sa->array[0]) * 10);
+	sa->len = 10;
+
+	for (i = 0; i < sa->len; i++) {
+		sa->array[i] = i + 1;
+	}
+
+	for (i = 0; i < sa->len; i++) {
+		printf("array[%d] = %d\n", i, array[i]);
+	}
+
+	free(sa);
+	return 0;
+}
+```
+
+上面的代码还是很好理解的，这边用了一个小技巧，就是用`sa->array[0]`代替`int`，即用 **数组第一个元素的大小来代替数组元素类型的大小** 。
+
+#### 实例：使用“柔性数组”来存储斐波拉契数列（Fibonacci）
+实现这样一个实例，主要的思路：
+1. 定义一个“柔性数组”
+2. 为1定义的数组分配空间
+3. 创建Fibonacci数列
+4. 释放内存
+
+实现代码：
+
+```cpp
+/**********************************
+ * http://www.typeof.me
+ * Author: huanzh
+ * Date: 25 Jan 2014 Sat
+ *
+ **********************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct _soft_array
+{
+	int len;
+	int array[];
+} soft_array;
+
+soft_array* create_soft_array(int size)
+{
+	soft_array* ret = NULL;
+	
+	if (size > 0) {
+		ret = (soft_array*) malloc(sizeof(ret) + sizeof(ret->array[0]) * size);
+		ret->len = size;
+	}
+
+	return ret;
+}
+
+void fac(soft_array* sa)
+{
+	int i;
+
+	if (1 == sa->len) {
+		sa->array[0] = 1;
+	} else {
+		sa->array[0] = 1;
+		sa->array[1] = 1;
+
+		/* 注意从2开始计算 */
+		for (i = 2; i < sa->len; i++) {
+			sa->array[i] = sa->array[i-1] + sa->array[i-2];
+		}
+	}
+}
+
+void delete_soft_array(soft_array* sa)
+{
+	free(sa);
+}
+
+int main(int argc, char** argv)
+{
+	int i;
+	soft_array* sa_fac = create_soft_array(10);
+
+	if (NULL != sa_fac) {
+		fac(sa_fac);
+
+		for (i = 0; i < sa_fac->len; i++) {
+			printf("%d = %d\n", i+1, sa_fac->array[i]);
+		}
+	}
+
+	delete_soft_array(sa_fac);
+	return 0;
+}
+```
+
+最后附上斐波拉契曲线，黄金比，蒙娜丽莎的整体构图就符合该曲线。
+
+![](http://photo.weibo.com/2144319137/photos/detail/photo_id/3670749410934512)

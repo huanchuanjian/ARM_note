@@ -3,6 +3,7 @@
 #### struct
 
 1. 空结构体类型是多大呢？我们分别用gcc, g++来编译测试下面这段代码：
+
 ```cpp
 #include <stdio.h>
 

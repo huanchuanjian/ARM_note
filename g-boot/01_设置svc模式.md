@@ -24,7 +24,7 @@ set_svc:
 
 #### 改进
 在阅读其他bootloader源码，比如U-Boot，发现置1的那条指令是这样写的`orr r0, r0, #0xd3`，将0xd3转换成二进制为`0b11010011`，发现低5位不变，对照上面那幅图，F和I位都置1了，阅读手册有：
-> I bit Disables IRQ interrupts when it is set.
+> I bit Disables IRQ interrupts when it is set.<br/>
 > F bit Disables FIQ interrupts when it is set.
 
 这里就理解了，它屏蔽了中断和快速中断。所以我也参考它的实现，这样就更完整了。
